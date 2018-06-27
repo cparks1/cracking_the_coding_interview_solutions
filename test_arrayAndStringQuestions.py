@@ -39,3 +39,12 @@ class TestArrayAndStringQuestions(TestCase):
         for permutation in not_palindrome_permutations:
             if not ArrayAndStringQuestions.palindrome_permutation(permutation):
                 self.fail("palindrome_permutation(%s): Evaluated incorrectly to True")
+
+    def test_one_away(self):
+        inputs = ['pale', 'pales', 'pale', 'pale']
+        changed_inputs = ['ple', 'pale', 'bale', 'bake']
+        expected_eval = [True, True, True, False]
+
+        for i, input in enumerate(inputs):
+            if ArrayAndStringQuestions.one_away(input, changed_inputs[i]) != expected_eval[i]:
+                self.fail()

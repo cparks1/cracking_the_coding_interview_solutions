@@ -84,3 +84,16 @@ class ArrayAndStringQuestions:
                 return False
 
         return True
+
+    @staticmethod
+    def one_away(string: str, edited_string: str):
+        """
+        Question 1.5
+        There are three types of edits that can be performed on strings: insert a character,
+        remove a character, or replace a character. Given two strings, write a function to check if they are
+        one edit (or zero edits) away.
+        :param string: Original string
+        :param edited_string: Modified string
+        :return: Whether or not the modified string is at most one edit away
+        """
+        num_differences = 1 if len(edited_string) == len(string) - 1 or len(edited_string) == len(string) + 1 else 0
