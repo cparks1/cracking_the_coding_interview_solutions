@@ -136,8 +136,8 @@ class ArrayAndStringQuestions:
         """
         Question 1.7
         Given an image represented by an NxN matrix, where each pixel in the image is 4
-        bytes, write a method to rotate the image by 90 degrees. (an you do this in place?
-        :return: Image rotated by 90 degrees.
+        bytes, write a method to rotate the image by 90 degrees. Can you do this in place?
+        :return: Matrix rotated by 90 degrees.
         """
 
     @staticmethod
