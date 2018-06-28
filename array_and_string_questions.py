@@ -1,4 +1,5 @@
 from collections import defaultdict
+from typing import List
 
 
 class ArrayAndStringQuestions:
@@ -97,3 +98,63 @@ class ArrayAndStringQuestions:
         :return: Whether or not the modified string is at most one edit away
         """
         num_differences = 1 if len(edited_string) == len(string) - 1 or len(edited_string) == len(string) + 1 else 0
+
+    @staticmethod
+    def string_compression(string: str):
+        """
+        Question 1.6
+        Implement a method to perform basic string compression using the counts
+        of repeated characters. For example, the string aabcccccaaa would become a2b1c5a3. If the
+        "compressed" string would not become smaller than the original string, your method should return
+        the original string. You can assume the string has only uppercase and lowercase letters (a - z).
+        :param string: String to be compressed
+        :return: Compressed string
+        """
+        compress_char = ''  # Holds the current character being compressed
+        compress_count = 0  # Holds the number of characters of compress_char that have been found so far
+        result = ''  # Holds the compression result.
+
+        for i, char in enumerate(string):
+            if i == len(string) - 1:  # End of string.
+                if compress_char != char:
+                    result += '%s%d' % (compress_char, compress_count)
+                    result += '%s1' % char
+                else:
+                    result += '%s%d' % (compress_char, compress_count + 1)
+            elif compress_char != char:
+                if compress_count > 0:
+                    result += '%s%d' % (compress_char, compress_count)
+                compress_char = char
+                compress_count = 1
+            else:
+                compress_count += 1
+
+        return result if len(result) < len(string) else string
+
+    @staticmethod
+    def rotate_matrix():
+        """
+        Question 1.7
+        Given an image represented by an NxN matrix, where each pixel in the image is 4
+        bytes, write a method to rotate the image by 90 degrees. (an you do this in place?
+        :return: Image rotated by 90 degrees.
+        """
+
+    @staticmethod
+    def zero_matrix(matrix: List(list)):
+        """
+        Question 1.8
+        Write an algorithm such that if an element in an MxN matrix is 0, its entire row and
+        column are set to 0.
+        :return: Matrix that has been operated on.
+        """
+
+    @staticmethod
+    def string_rotation():
+        """
+        Question 1.9
+        Assume you have a method isSubstring which checks if one word is a substring of another.
+        Given two strings, 51 and 52, write code to check if 52 is a rotation of 51 using only one
+        call to isSubstring (e.g., "waterbottle" is a rotation of"erbottlewat").
+        :return:
+        """
