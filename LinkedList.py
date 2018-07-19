@@ -29,6 +29,19 @@ class Node:
 
         return head
 
+    @staticmethod
+    def toList(head:'Node'):
+        """
+        Creates a normal Python list from a Linked List. Good for unit testing.
+        :return: List of data values, in the order they appeared from the head.
+        """
+        return_list = [head.data]
+        while head.next is not None:
+            return_list.append(head.next.data)
+            head = head.next
+
+        return return_list
+
     def appendToTail(self, data):
         end = Node(data=data)
         n = self
