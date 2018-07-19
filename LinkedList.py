@@ -18,12 +18,13 @@ class Node:
         :param list: List containing the data that will be held in each node.
         :return: A node that represents a linked list.
         """
+        data_list = list.copy()
         try:
-            head = Node(data=list.pop(0))
+            head = Node(data=data_list.pop(0))
         except IndexError:  # Blank list.
             return Node()  # Return blank node if list blank.
 
-        for data in list:
+        for data in data_list:
             head.appendToTail(data)
 
         return head
