@@ -11,6 +11,14 @@ class Node:
         self.next = next
         self.data = data
 
+    def __str__(self):
+        n = self
+        result = ' '
+        while n.next is not None:
+            result += '%s -> ' % n.data
+            n = n.next
+        return result+'%s -> END' % n.data
+
     @classmethod
     def fromList(cls, list:list):
         """
@@ -42,10 +50,26 @@ class Node:
 
         return return_list
 
-    def appendToTail(self, data):
+    def appendToTail(self, data, circle=False):
+        """
+        Append a node to the end of this linked list.
+
+        :param data: Data value to be stored in the node
+        :param circle: Whether or not the "next" element being appended should be "self" (the head).
+        :return: None
+        """
         end = Node(data=data)
+        if circle:
+            end.next = self
+
         n = self
         while n.next is not None:
+            if n.next == self:  # You've attempted to appendToTail on a circular linked list, and this is the last element.
+                if circle:
+                    n.next = end
+                    return
+                else:
+                    raise Exception("You cannot non-circularly append to 'tail' of a circular linked list.")
             n = n.next
         n.next = end
 

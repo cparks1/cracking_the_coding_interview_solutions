@@ -12,7 +12,32 @@ class TestLinkedListQuestions(TestCase):
                       ([], [None])]
 
         for test_list, result in test_cases:
-            self.assertListEqual(Node.toList(LinkedListQuestions.remove_duplicates(Node.fromList(test_list))), result)
+            self.assertListEqual(result, Node.toList(LinkedListQuestions.remove_duplicates(Node.fromList(test_list))))
 
     def test_kth_to_last(self):
-        pass#self.fail()
+        test_cases = [([1, 2, 3, 4], 1),
+                      ([1, 5, 3, 2, 4, 8, 23], 3),
+                      ([1, 67, 38, 83, 23, 54, 63], 3),
+                      ([17, 67, 83, 38, 32, 45, 36], 7)]
+
+        for test_list, k in test_cases:
+            testNode = Node.fromList(test_list)
+            if k < len(test_list):
+                self.assertEqual(test_list[(k*-1)-1], LinkedListQuestions.kth_to_last(testNode, k).data)
+            else:
+                self.assertIsNone(LinkedListQuestions.kth_to_last(testNode, k))
+
+    def list_delete_middle(self, list):
+        middle = int(len(list)/2)
+        list.pop(middle if len(list) % 2 != 0 else middle-1)
+
+    def test_delete_middle(self):
+        testNodes = [[1, 2, 3, 4, 5],
+                     [1, 2, 3, 4],
+                     [1, 2, 3, 4, 5, 6, 7]]
+        for nodeList in testNodes:
+            testNode = Node.fromList(nodeList)
+            self.list_delete_middle(nodeList)
+            LinkedListQuestions.delete_middle(testNode)
+
+            self.assertListEqual(nodeList, Node.toList(testNode))
