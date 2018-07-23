@@ -90,7 +90,36 @@ class LinkedListQuestions:
         You have two numbers represented by a linked list, where each node contains a single
         digit. The digits are stored in reverse order, such that the 1's digit is at the head of the list. Write a
         function that adds the two numbers and returns the sum as a linked list.
+        Example input: 617 + 295 ==(7 -> 1 -> 6) + (5 -> 9 -> 2)
+        Example output: (2 -> 1 -> 9) == 912
         :param list_1: Head element of the first linked list.
         :param list_2: Head element of the second linked list.
         :return: Sum of the two lists, in the same format the two lists are given in.
         """
+        cursor_1 = list_1  # Save and use reference to list_1 to avoid changing list_1's position
+        cursor_2 = list_2  # Save and use reference to list_2 to avoid changing list_2's position
+
+        result = Node(data=0)  # Head of the result node
+        result_cursor = result  # Save and use reference to head to avoid changing result's head pos
+
+        carry = 0
+        while cursor_1 is not None or cursor_2 is not None:
+            result_cursor.data += carry  # Process the carried value
+            carry = 0  # Reset carry
+
+            if cursor_1:
+                result_cursor.data += cursor_1.data
+                cursor_1 = cursor_1.next
+            if cursor_2:
+                result_cursor.data += cursor_2.data
+                cursor_2 = cursor_2.next
+
+            if result_cursor.data > 9:  # If value 10 or greater, process carry
+                carry = result_cursor.data - 9  # ex: 10 - 9 = 1 carry; 14 - 9 = whoops fix this
+                result_cursor.data -= 10
+
+            if cursor_1 and cursor_2:
+                result_cursor.appendToTail(0)
+                result_cursor = result_cursor.next
+
+        return result

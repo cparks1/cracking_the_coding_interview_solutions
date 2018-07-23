@@ -41,3 +41,12 @@ class TestLinkedListQuestions(TestCase):
             LinkedListQuestions.delete_middle(testNode)
 
             self.assertListEqual(nodeList, Node.toList(testNode))
+
+    def test_sum_lists(self):
+        test_cases = [([3, 2, 1], [1, 2, 3], [4, 4, 4]),
+                      ([7, 1, 6], [5, 9, 2], [2, 1, 9])]
+        for nodeList1, nodeList2, resultList in test_cases:
+            list1 = Node.fromList(nodeList1)
+            list2 = Node.fromList(nodeList2)
+            resultNodeList = LinkedListQuestions.sum_lists(list1, list2)
+            self.assertListEqual(resultList, Node.toList(resultNodeList))
