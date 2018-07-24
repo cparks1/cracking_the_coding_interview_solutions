@@ -79,9 +79,13 @@ class LinkedListQuestions:
         before all nodes greater than or equal to x. lf x is contained within the list, the values of x only need
         to be after the elements less than x (see below). The partition element x can appear anywhere in the
         "right partition"; it does not need to appear between the left and right partitions.
-        :param head:
-        :return:
+        :param head: Head of the linked list to be partitioned
+        :return: Head of a new linked list that is partitioned.
         """
+        # Basic idea: Make two linked lists: result, and right
+        # Scroll through "head", and append each node that is "left" of x to the "result" list.
+        # If it is not to the "left" of x, append it to "right".
+        # At the end, set the "next" of the last element of "result" as the head of the "right" linked list.
 
     @staticmethod
     def sum_lists(list_1: Node, list_2: Node):
