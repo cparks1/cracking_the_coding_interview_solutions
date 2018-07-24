@@ -44,7 +44,10 @@ class TestLinkedListQuestions(TestCase):
 
     def test_sum_lists(self):
         test_cases = [([3, 2, 1], [1, 2, 3], [4, 4, 4]),
-                      ([7, 1, 6], [5, 9, 2], [2, 1, 9])]
+                      ([7, 1, 6], [5, 9, 2], [2, 1, 9]),
+                      ([9, 9, 9], [9, 9, 9], [8, 9, 9, 1]),
+                      ([1, 2, 3, 4, 5, 6, 7, 8, 9], [9, 8, 7, 6, 5, 4, 3, 2, 1], [0, 1, 1, 1, 1, 1, 1, 1, 1, 1]),
+                      ([9, 1, 3], [9, 8], [8, 0, 4])]
         for nodeList1, nodeList2, resultList in test_cases:
             list1 = Node.fromList(nodeList1)
             list2 = Node.fromList(nodeList2)

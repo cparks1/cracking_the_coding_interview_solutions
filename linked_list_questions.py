@@ -103,23 +103,24 @@ class LinkedListQuestions:
         result_cursor = result  # Save and use reference to head to avoid changing result's head pos
 
         carry = 0
-        while cursor_1 is not None or cursor_2 is not None:
+        while cursor_1 is not None or cursor_2 is not None or carry:  # Runs for O(N) loops, where N is the length of the largest list.
             result_cursor.data += carry  # Process the carried value
             carry = 0  # Reset carry
 
-            if cursor_1:
+            if cursor_1:  # Process the data from list 1
                 result_cursor.data += cursor_1.data
                 cursor_1 = cursor_1.next
-            if cursor_2:
+
+            if cursor_2:  # Process the data from list 2
                 result_cursor.data += cursor_2.data
                 cursor_2 = cursor_2.next
 
-            if result_cursor.data > 9:  # If value 10 or greater, process carry
-                carry = result_cursor.data - 9  # ex: 10 - 9 = 1 carry; 14 - 9 = whoops fix this
+            if result_cursor.data > 9:  # If value 10 or greater, set carry
+                carry = 1  # Carry will only ever be a maximum of 1, as 9+9+1 (carry) = 19
                 result_cursor.data -= 10
 
-            if cursor_1 and cursor_2:
-                result_cursor.appendToTail(0)
-                result_cursor = result_cursor.next
+            if cursor_1 or cursor_2 or carry:  # If any of these are true, we must append a node to process what's left
+                result_cursor.appendToTail(0)  # Start it at 0, the next loop will add everything up.
+                result_cursor = result_cursor.next  # Move the cursor to the node we just appended.
 
         return result
