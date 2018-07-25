@@ -72,7 +72,7 @@ class LinkedListQuestions:
 
 
     @staticmethod
-    def partition(head: Node, value: int):
+    def partition(head: Node, partition_val: int):
         """
         Question 2.4
         Write code to partition a linked list around a value x, such that all nodes less than x come
@@ -86,6 +86,40 @@ class LinkedListQuestions:
         # Scroll through "head", and append each node that is "left" of x to the "result" list.
         # If it is not to the "left" of x, append it to "right".
         # At the end, set the "next" of the last element of "result" as the head of the "right" linked list.
+
+        result = None  # Will be used to store the head of the result list
+        left_cursor = None  # Used to keep track of the last element in the 'left' part of the partition.
+
+        right = None  # Used to store the head of the 'right' part of the partition.
+        right_cursor = None  # Used to keep track of the last element in the 'right' part of the partition.
+
+        while head is not None:
+            if head.data < partition_val:  # Append to 'left'
+                if result:
+                    left_cursor.appendToTail(head.data)
+                    left_cursor = left_cursor.next
+                else:
+                    result = Node(data=head.data)
+                    left_cursor = result
+            else:  # Append to 'right'
+                if right:
+                    right_cursor.appendToTail(head.data)
+                    right_cursor = right_cursor.next
+                else:
+                    right = Node(data=head.data)
+                    right_cursor = right
+
+            head = head.next
+
+        if result and right:
+            left_cursor.appendToTail(right)
+            return result
+        elif result:  # There were no elements greater than or equal to the partition value
+            return result
+        elif right:  # There were no elements less than the partition value
+            return right
+        else:  # There were no elements
+            return Node()  # Return a blank node
 
     @staticmethod
     def sum_lists(list_1: Node, list_2: Node):

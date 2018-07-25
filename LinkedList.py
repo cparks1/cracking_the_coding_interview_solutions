@@ -58,7 +58,11 @@ class Node:
         :param circle: Whether or not the "next" element being appended should be "self" (the head).
         :return: None
         """
-        end = Node(data=data)
+        if type(data) != Node:  # Support 'data' param being an actual node to append
+            end = Node(data=data)
+        else:
+            end = data
+
         if circle:
             end.next = self
 

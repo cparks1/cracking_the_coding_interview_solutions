@@ -53,3 +53,22 @@ class TestLinkedListQuestions(TestCase):
             list2 = Node.fromList(nodeList2)
             resultNodeList = LinkedListQuestions.sum_lists(list1, list2)
             self.assertListEqual(resultList, Node.toList(resultNodeList))
+
+    def check_if_list_partitioned(self, data_list, partition_value):
+        found_partition_value = False
+        for i, value in enumerate(data_list):
+            if found_partition_value:  # We've found the partition value.
+                if value < partition_value:
+                    self.fail('Value at index %d of %d is not partitioned properly: %s' % (i, len(data_list)-1, data_list))
+            else:  # We haven't yet found the partition value.
+                if value == partition_value:
+                    found_partition_value = True
+                elif value > partition_value:
+                    self.fail('Value at index %d of %d is not partitioned properly: %s' % (i, len(data_list)-1, data_list))
+
+    def test_partition(self):
+        testCases = [([5, 8, 9, 4, 2, 1, 3, 4, 5, 7, 8, 9, 6, 5, 4, 3, 2], 5)]
+        for dataList, partition_value in testCases:
+            nodeList = Node.fromList(dataList)
+            partitionedList = Node.toList(LinkedListQuestions.partition(nodeList, 5))
+            self.check_if_list_partitioned(partitionedList, partition_value)
