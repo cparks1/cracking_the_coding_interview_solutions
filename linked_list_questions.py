@@ -162,3 +162,45 @@ class LinkedListQuestions:
                 result_cursor = result_cursor.next  # Move the cursor to the node we just appended.
 
         return result
+
+    @staticmethod
+    def is_palindrome(head: Node):
+        """
+        Question 2.6
+        Implement a function to check if a linked list is a palindrome.
+        :param head: Head element of the linked list.
+        :return: TRUE if it is a palindrome, false otherwise
+        """
+        # Thoughts: The linked list can be separated into two partitions, pivoting around the midpoint.
+        # These two partitions will be exactly the same, if reversed.
+
+    @staticmethod
+    def is_intersection(list_1: Node, list_2: Node):
+        """
+        Question 2.7
+        Given two (singly) linked lists, determine if the two lists intersect. Return the intersecting
+        node. Note that the intersection is defined based on reference, not value. That is, if the kth
+        node of the first linked list is the exact same node (by reference) as the jth node of the second
+        linked list, then they are intersecting.
+        :param list_1:
+        :param list_2:
+        :return:
+        """
+
+    @staticmethod
+    def loop_detection(head: Node):
+        """
+        Question 2.8
+        Given a circular linked list, implement an algorithm that returns the node at the
+        beginning of the loop.
+
+        DEFINITION
+        Circular linked list: A (corrupt) linked list in which a node's next pointer points to an earlier node, so
+        as to make a loop in the linked list.
+
+        EXAMPLE
+        Input: A -> B -> C -> D -> E -> C [the same C as earlier]
+        Output: C
+        :param head:
+        :return:
+        """
