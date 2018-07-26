@@ -171,21 +171,54 @@ class LinkedListQuestions:
         :param head: Head element of the linked list.
         :return: TRUE if it is a palindrome, false otherwise
         """
-        # Thoughts: The linked list can be separated into two partitions, pivoting around the midpoint.
+        # Thoughts: Since the author's linked list (node list?) implementation does not include a "previous" field,
+        # I will assume that we should not implement this into our node class.
+
+        # The linked list can be separated into two partitions, pivoting around the midpoint.
         # These two partitions will be exactly the same, if reversed.
+        # 1 2 3 4 3 2 1
+        #       ^
+        # 1 2 3 | 3 2 1
+
+        # 1 2 3 4 4 3 2 1
+        #       ^ ^
+        # 1 2 3 4 | 4 3 2 1
+
+        # On determination of the midpoint, you can determine the first node of the right partition and
+        # the length of the left partition.
+
+        # Determination of the midpoint can be done by shifting the
+        # midpoint right by 1 node for every 2 nodes encountered.
+
+        head_cursor = head  # Save reference to head to avoid changing position of the parameter passed
+        left_partition_len = 0  # How long the left partition is
+        right_part_head = None  # Head of the right partition.
+        while head_cursor.next is not None:  # Search for the midpoint
+            # Add midpoint search
+            # Add left partition length determinator
+            head_cursor = head_cursor.next  # Advance to the next node
+
+        # Set right_partition_head
 
     @staticmethod
     def is_intersection(list_1: Node, list_2: Node):
         """
         Question 2.7
-        Given two (singly) linked lists, determine if the two lists intersect. Return the intersecting
-        node. Note that the intersection is defined based on reference, not value. That is, if the kth
-        node of the first linked list is the exact same node (by reference) as the jth node of the second
-        linked list, then they are intersecting.
-        :param list_1:
-        :param list_2:
-        :return:
+        Given two (singly) linked lists, determine if the two lists intersect. Return the intersecting node.
+        Note that the intersection is defined based on reference, not value.
+        That is, if the kth node of the first linked list is the exact same node (by reference) as
+            the jth node of the second linked list, then they are intersecting.
+        :param list_1: First singly linked list
+        :param list_2: Second singly linked list
+        :return: The intersecting node, if they intersect. Blank node if they do not.
         """
+        # The O(N^2) method is obvious: while list_1, while list_2, if node == node return True
+        # But how can we do it in O(N)?
+
+        # Both lists will have at least 1 node in common if they intersect.
+        # Past the point of intersection, they should both be the same.
+        # Ex: A->B->C->D->E
+        #     H->I->J->C->D->E
 
     @staticmethod
     def loop_detection(head: Node):
